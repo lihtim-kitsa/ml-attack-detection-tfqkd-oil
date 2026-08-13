@@ -18,7 +18,7 @@ Instead of relying on basic Quantum Bit Error Rate (QBER) thresholding—which t
 ## Key Features & Contributions
 
 - **Lang-Kobayashi Simulation Pipeline:** Simulates stiff optical phase/intensity equations using Backward Differentiation Formula (BDF) solvers to generate synthetic nominal, attack, and environmental drift data.
-- **Physical Feature Extraction:** Instead of raw time-series data, models are trained on distinct observables: Pulse Mean Photon Number (µ), Photon Number Variance (σ²), Spectral Sideband Power (Psb), RMS Phase Decoherence (Δφ), and QBER.
+- **Physical Feature Extraction:** Instead of raw time-series data, models are trained on distinct observables: Pulse Mean Photon Number ($\mu$), Photon Number Variance ($\sigma^2_\mu$), Spectral Sideband Power ($P_{sb}$), RMS Phase Decoherence ($\Delta\phi$), and QBER.
 - **Unified ML Architecture:** Compares Classical Tree Ensembles (XGBoost, Random Forest), FedAvg Neural Networks, and distance-based SVMs.
 - **Drift Hardening:** Mitigates the 99.8% False Positive Rate (FPR) typically seen under benign operational drift (e.g., thermal variance, fiber aging) down to near-zero.
 - **Zero-Day Detection:** Uses a generative Deep SVDD (Support Vector Data Description) model that maps nominal conditions to a tight hypersphere, allowing successful detection of unseen zero-day attacks (like FSK) without labeled training.
@@ -26,7 +26,7 @@ Instead of relying on basic Quantum Bit Error Rate (QBER) thresholding—which t
 
 ## Repository Structure
 
-`
+```text
 .
 ├── data/                  # Generated synthetic datasets (.parquet)
 ├── figures/               # Generated evaluation plots (ROC, SHAP, etc.)
@@ -42,57 +42,57 @@ Instead of relying on basic Quantum Bit Error Rate (QBER) thresholding—which t
 ├── Dockerfile             # Docker container definition
 ├── requirements.txt       # Python dependencies
 └── README.md              # This file
-`
+```
 
 ## Setup & Installation
 
-It is recommended to run this project inside a virtual environment (e.g., env or conda).
+It is recommended to run this project inside a virtual environment (e.g., `venv` or `conda`).
 
 1. **Clone the repository:**
-   `ash
+   ```bash
    git clone https://github.com/USERNAME/REPO-LINK-HERE.git
    cd TFQKD
-   `
+   ```
 
 2. **Install dependencies:**
-   `ash
+   ```bash
    pip install -r requirements.txt
-   `
-   *(Note: For Quantum Machine Learning models, ensure qiskit and relevant IBM Quantum backends are installed).*
+   ```
+   *(Note: For Quantum Machine Learning models, ensure `qiskit` and relevant IBM Quantum backends are installed).*
 
 ## Usage Guide
 
-The pipeline is split into distinct stages that can be run sequentially via the scripts/ directory.
+The pipeline is split into distinct stages that can be run sequentially via the `scripts/` directory.
 
 ### 1. Generate Synthetic Data
-First, generate the physically-simulated dataset from the Lang-Kobayashi differential equations. This will sweep across modulation depths (m) and detunings (Δλ) to create Nominal, FIM, and TWIRL samples.
-`ash
+First, generate the physically-simulated dataset from the Lang-Kobayashi differential equations. This will sweep across modulation depths ($m$) and detunings ($\Delta\lambda$) to create Nominal, FIM, and TWIRL samples.
+```bash
 python scripts/generate_data.py
 python scripts/generate_drift_data.py
 python scripts/generate_zero_day_data.py
-`
+```
 
 ### 2. Train the Models
-Train the suite of Classical, Federated, and One-Class classifiers. The pipeline automatically standardizes features (Z-score), performs cross-validated grid search for hyperparameter tuning, tracks metrics using MLflow, and plots the confusion matrices and SHAP summaries.
-`ash
+Train the suite of Classical, Federated, and One-Class classifiers. The pipeline automatically standardizes features (Z-score), performs cross-validated grid search for hyperparameter tuning, tracks metrics using `MLflow`, and plots the confusion matrices and SHAP summaries.
+```bash
 python scripts/train_pipeline.py
-`
+```
 
 ### 3. Evaluate Generalization & Zero-Day Robustness
 Test how the trained models handle real-world challenges: non-adversarial environmental drift (evaluating False Positive reduction via Drift Hardening) and completely novel zero-day attacks (evaluating Deep SVDD anomaly boundary mapping).
-`ash
+```bash
 python scripts/evaluate_generalization.py
-`
+```
 
 ## Results Summary
 
 * **Performance Thresholds:** The XGBoost classifier achieved 88.22% overall accuracy, significantly outperforming distance-based SVMs (68%) and standard FedAvg Neural Networks (33%). 
 * **Geometric Discontinuity:** Due to the non-convex, overlapping class regions of the Lang-Kobayashi feature space, tree-based orthogonal partitioning drastically outperforms gradient-descent optimizers on this data geometry.
-* **Explainability:** SHAP analysis demonstrated that QBER ranks lowest in feature attribution against continuous-wave side channels. Phase Decoherence (Δφ) and Spectral Sideband Power (Psb) primarily define the adversarial boundary.
+* **Explainability:** SHAP analysis demonstrated that QBER ranks lowest in feature attribution against continuous-wave side channels. Phase Decoherence ($\Delta\phi$) and Spectral Sideband Power ($P_{sb}$) primarily define the adversarial boundary.
 
 ## License
 
-This project is licensed under the MIT License. See the LICENSE file for details.
+This project is licensed under the MIT License. See the `LICENSE` file for details.
 
 ---
 **Author:** Mithil Hardik Astik  
