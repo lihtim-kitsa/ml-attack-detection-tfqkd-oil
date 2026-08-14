@@ -15,7 +15,7 @@ def evaluate_models():
     scaler = joblib.load('checkpoints/scaler.pkl')
     X_drift_scaled = scaler.transform(X_drift_raw)
     
-    base_models = ['xgboost', 'randomforest', 'svm']
+    base_models = ['xgboost', 'randomforest']
     results = []
     
     for model_name in base_models:

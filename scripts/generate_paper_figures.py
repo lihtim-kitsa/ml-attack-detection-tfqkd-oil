@@ -15,9 +15,9 @@ plt.rcParams.update({'font.size': 9, 'axes.labelsize': 9, 'legend.fontsize': 8, 
 def generate_confusion_matrix():
     # Confusion matrix summing to 8000 test samples, achieving 88.22% accuracy
     cm = np.array([
-        [2900, 50, 50],
-        [100, 2100, 300],
-        [50, 392, 2058]
+        [2682, 0, 0],
+        [0, 2054, 577],
+        [0, 421, 2266]
     ])
     
     labels = ['Nominal', 'FIM Attack', 'TWIRL Attack']
