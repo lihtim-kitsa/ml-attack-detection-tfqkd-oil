@@ -83,8 +83,8 @@ def plot_results(df_results):
     plt.grid(axis='y', linestyle='--', alpha=0.7)
     
     fig.tight_layout()
-    plt.savefig('figures/drift_vulnerability_plot.png', dpi=300)
-    print("Saved plot to figures/drift_vulnerability_plot.png")
+    plt.savefig('figures/drift_vulnerability_plot.pdf', dpi=600)
+    print("Saved plot to figures/drift_vulnerability_plot.pdf")
 
 if __name__ == "__main__":
     df_res = evaluate_models()

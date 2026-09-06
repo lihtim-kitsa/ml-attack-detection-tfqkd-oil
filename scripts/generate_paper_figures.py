@@ -10,7 +10,7 @@ os.makedirs('figures', exist_ok=True)
 # Set plotting style
 plt.style.use('seaborn-v0_8-paper')
 sns.set_theme(style="whitegrid", context="paper")
-plt.rcParams.update({'font.size': 9, 'axes.labelsize': 9, 'legend.fontsize': 8, 'xtick.labelsize': 8, 'ytick.labelsize': 8})
+plt.rcParams.update({'font.size': 11, 'axes.labelsize': 11, 'legend.fontsize': 10, 'xtick.labelsize': 10, 'ytick.labelsize': 10})
 
 def generate_confusion_matrix():
     # Confusion matrix summing to 8000 test samples, achieving 88.22% accuracy
@@ -31,7 +31,7 @@ def generate_confusion_matrix():
     plt.ylabel('True Physical State')
     plt.xlabel('Predicted State')
     plt.tight_layout()
-    plt.savefig('figures/fig_confusion_matrix.pdf', dpi=300)
+    plt.savefig('figures/fig_confusion_matrix.pdf', dpi=600)
     plt.close()
 
 def generate_tsne_plot():
@@ -47,16 +47,17 @@ def generate_tsne_plot():
     X_twirl = X_twirl * 2 + np.array([1, 2])
     
     plt.figure(figsize=(7, 5))
-    plt.scatter(X_nom[:, 0], X_nom[:, 1], alpha=0.6, label='Nominal', color='green', marker='o', s=20)
-    plt.scatter(X_fim[:, 0], X_fim[:, 1], alpha=0.6, label='FIM Attack', color='red', marker='x', s=20)
-    plt.scatter(X_twirl[:, 0], X_twirl[:, 1], alpha=0.6, label='TWIRL Attack', color='blue', marker='s', s=20)
+    # Colorblind-safe palette (e.g. Seaborn colorblind: blue, orange, green)
+    plt.scatter(X_nom[:, 0], X_nom[:, 1], alpha=0.7, label='Nominal', color='#0173b2', marker='o', s=30)
+    plt.scatter(X_fim[:, 0], X_fim[:, 1], alpha=0.7, label='FIM Attack', color='#d55e00', marker='X', s=30)
+    plt.scatter(X_twirl[:, 0], X_twirl[:, 1], alpha=0.7, label='TWIRL Attack', color='#029e73', marker='^', s=30)
     
     plt.title('t-SNE Visualization of the 5-D Physical Feature Space', pad=15)
     plt.xlabel('t-SNE Dimension 1')
     plt.ylabel('t-SNE Dimension 2')
     plt.legend(loc='lower right')
     plt.tight_layout()
-    plt.savefig('figures/fig_tsne.pdf', dpi=300, bbox_inches='tight')
+    plt.savefig('figures/fig_tsne.pdf', dpi=600, bbox_inches='tight')
     plt.close()
 
 def generate_roc_curves():
@@ -80,7 +81,7 @@ def generate_roc_curves():
     plt.ylabel('True Positive Rate')
     plt.legend(loc="lower right")
     plt.tight_layout()
-    plt.savefig('figures/fig_roc.pdf', dpi=300)
+    plt.savefig('figures/fig_roc.pdf', dpi=600)
     plt.close()
 
 def generate_shap_plot():
@@ -93,7 +94,7 @@ def generate_shap_plot():
     plt.title('SHAP Feature Importance (XGBoost)', pad=15)
     plt.xlabel('Mean |SHAP value| (Average impact on model output magnitude)')
     plt.tight_layout()
-    plt.savefig('figures/fig_shap.pdf', dpi=300)
+    plt.savefig('figures/fig_shap.pdf', dpi=600)
     plt.close()
 
 def generate_skr_plot():
@@ -125,7 +126,7 @@ def generate_skr_plot():
     plt.grid(True, which="both", ls="--", alpha=0.5)
     plt.legend()
     plt.tight_layout()
-    plt.savefig('figures/fig_skr.pdf', dpi=300)
+    plt.savefig('figures/fig_skr.pdf', dpi=600)
     plt.close()
 
 if __name__ == '__main__':
