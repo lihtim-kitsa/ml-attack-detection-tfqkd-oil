@@ -1,6 +1,18 @@
 import numpy as np
 from scipy.integrate import solve_ivp
 import matplotlib.pyplot as plt
+import matplotlib
+
+matplotlib.rcParams['pdf.fonttype'] = 42
+matplotlib.rcParams['ps.fonttype'] = 42
+matplotlib.rcParams.update({
+    'font.size': 12,
+    'axes.titlesize': 13,
+    'axes.labelsize': 12,
+    'xtick.labelsize': 11,
+    'ytick.labelsize': 11,
+    'legend.fontsize': 11,
+})
 
 # Parameters from Pang et al. (Table III)
 alpha = 4.5
@@ -51,6 +63,6 @@ for i, E_x in enumerate(E_x_vals):
         plt.xlabel('Time (ns)')
 
 plt.tight_layout()
-plt.savefig('figures/pang_verification.pdf', dpi=300)
+plt.savefig('figures/pang_verification.pdf', format='pdf', bbox_inches='tight', dpi=300)
 plt.close()
 print("Verification complete. Plot saved to figures/pang_verification.pdf")

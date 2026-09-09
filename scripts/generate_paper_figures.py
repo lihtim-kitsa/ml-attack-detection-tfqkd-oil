@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib
 import seaborn as sns
 from sklearn.datasets import make_moons, make_blobs
 import os
@@ -10,7 +11,16 @@ os.makedirs('figures', exist_ok=True)
 # Set plotting style
 plt.style.use('seaborn-v0_8-paper')
 sns.set_theme(style="whitegrid", context="paper")
-plt.rcParams.update({'font.size': 11, 'axes.labelsize': 11, 'legend.fontsize': 10, 'xtick.labelsize': 10, 'ytick.labelsize': 10})
+matplotlib.rcParams['pdf.fonttype'] = 42
+matplotlib.rcParams['ps.fonttype'] = 42
+matplotlib.rcParams.update({
+    'font.size': 12,
+    'axes.titlesize': 13,
+    'axes.labelsize': 12,
+    'xtick.labelsize': 11,
+    'ytick.labelsize': 11,
+    'legend.fontsize': 11,
+})
 
 def generate_confusion_matrix():
     # Confusion matrix summing to 8000 test samples, achieving 88.22% accuracy
@@ -31,7 +41,7 @@ def generate_confusion_matrix():
     plt.ylabel('True Physical State')
     plt.xlabel('Predicted State')
     plt.tight_layout()
-    plt.savefig('figures/fig_confusion_matrix.pdf', dpi=600)
+    plt.savefig('figures/fig_confusion_matrix.pdf', format='pdf', bbox_inches='tight', dpi=600)
     plt.close()
 
 def generate_tsne_plot():
@@ -57,7 +67,7 @@ def generate_tsne_plot():
     plt.ylabel('t-SNE Dimension 2')
     plt.legend(loc='lower right')
     plt.tight_layout()
-    plt.savefig('figures/fig_tsne.pdf', dpi=600, bbox_inches='tight')
+    plt.savefig('figures/fig_tsne.pdf', format='pdf', bbox_inches='tight', dpi=600)
     plt.close()
 
 def generate_roc_curves():
@@ -81,7 +91,7 @@ def generate_roc_curves():
     plt.ylabel('True Positive Rate')
     plt.legend(loc="lower right")
     plt.tight_layout()
-    plt.savefig('figures/fig_roc.pdf', dpi=600)
+    plt.savefig('figures/fig_roc.pdf', format='pdf', bbox_inches='tight', dpi=600)
     plt.close()
 
 def generate_shap_plot():
@@ -94,7 +104,7 @@ def generate_shap_plot():
     plt.title('SHAP Feature Importance (XGBoost)', pad=15)
     plt.xlabel('Mean |SHAP value| (Average impact on model output magnitude)')
     plt.tight_layout()
-    plt.savefig('figures/fig_shap.pdf', dpi=600)
+    plt.savefig('figures/fig_shap.pdf', format='pdf', bbox_inches='tight', dpi=600)
     plt.close()
 
 def generate_skr_plot():
@@ -126,7 +136,7 @@ def generate_skr_plot():
     plt.grid(True, which="both", ls="--", alpha=0.5)
     plt.legend()
     plt.tight_layout()
-    plt.savefig('figures/fig_skr.pdf', dpi=600)
+    plt.savefig('figures/fig_skr.pdf', format='pdf', bbox_inches='tight', dpi=600)
     plt.close()
 
 if __name__ == '__main__':

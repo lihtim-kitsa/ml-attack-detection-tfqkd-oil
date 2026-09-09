@@ -3,8 +3,18 @@ import numpy as np
 import joblib
 import os
 import matplotlib.pyplot as plt
+import matplotlib
 
-plt.rcParams.update({'font.size': 9, 'axes.labelsize': 9, 'legend.fontsize': 8, 'xtick.labelsize': 8, 'ytick.labelsize': 8})
+matplotlib.rcParams['pdf.fonttype'] = 42
+matplotlib.rcParams['ps.fonttype'] = 42
+matplotlib.rcParams.update({
+    'font.size': 12,
+    'axes.titlesize': 13,
+    'axes.labelsize': 12,
+    'xtick.labelsize': 11,
+    'ytick.labelsize': 11,
+    'legend.fontsize': 11,
+})
 
 def evaluate_models():
     # Load drift dataset
@@ -83,7 +93,7 @@ def plot_results(df_results):
     plt.grid(axis='y', linestyle='--', alpha=0.7)
     
     fig.tight_layout()
-    plt.savefig('figures/drift_vulnerability_plot.pdf', dpi=600)
+    plt.savefig('figures/drift_vulnerability_plot.pdf', format='pdf', bbox_inches='tight', dpi=600)
     print("Saved plot to figures/drift_vulnerability_plot.pdf")
 
 if __name__ == "__main__":
