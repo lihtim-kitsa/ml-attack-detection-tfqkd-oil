@@ -28,12 +28,6 @@ mlflow.db
 *.skops
 *.pth
 
-# Data
-data/
-*.parquet
-*.csv
-*.db
-
 # OS
 .DS_Store
 Thumbs.db

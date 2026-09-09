@@ -8,12 +8,12 @@ import matplotlib
 matplotlib.rcParams['pdf.fonttype'] = 42
 matplotlib.rcParams['ps.fonttype'] = 42
 matplotlib.rcParams.update({
-    'font.size': 12,
-    'axes.titlesize': 13,
-    'axes.labelsize': 12,
-    'xtick.labelsize': 11,
-    'ytick.labelsize': 11,
-    'legend.fontsize': 11,
+    'font.size': 14,
+    'axes.titlesize': 16,
+    'axes.labelsize': 14,
+    'xtick.labelsize': 13,
+    'ytick.labelsize': 13,
+    'legend.fontsize': 13,
 })
 
 def evaluate_models():
@@ -71,7 +71,7 @@ def plot_results(df_results):
     rects2 = ax.bar(x + width/2, df_results['Hardened FPR'], width, label='Hardened FPR (post-hardening)', color='#2ca02c')
     
     ax.set_ylabel('False Positive Rate (%)')
-    ax.set_title('Impact of Non-Adversarial Drift on False Positive Rate', fontsize=10)
+    ax.set_title('Impact of Non-Adversarial Drift on False Positive Rate', fontsize=16)
     ax.set_xticks(x)
     ax.set_xticklabels(df_results['Model'], rotation=45, ha='right')
     ax.legend(loc='upper right', bbox_to_anchor=(1, 1))
@@ -83,7 +83,7 @@ def plot_results(df_results):
                         xy=(rect.get_x() + rect.get_width() / 2, height),
                         xytext=(0, 3),
                         textcoords="offset points",
-                        ha='center', va='bottom', fontsize=10)
+                        ha='center', va='bottom', fontsize=13)
                         
     autolabel(rects1)
     autolabel(rects2)
