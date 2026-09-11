@@ -22,8 +22,6 @@ wheels/
 *.egg
 
 # MLFlow and Models
-mlruns/
-mlflow.db
 *.pkl
 *.skops
 *.pth
