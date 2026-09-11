@@ -50,8 +50,8 @@ It is recommended to run this project inside a virtual environment (e.g., `venv`
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/USERNAME/REPO-LINK-HERE.git
-   cd TFQKD
+   git clone https://github.com/ml-attack-detection-tfqkd-oil.git
+   cd ml-attack-detection-tfqkd-oil
    ```
 
 2. **Install dependencies:**
