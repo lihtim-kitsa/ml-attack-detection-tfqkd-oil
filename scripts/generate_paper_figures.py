@@ -14,12 +14,12 @@ sns.set_theme(style="whitegrid", context="paper")
 matplotlib.rcParams['pdf.fonttype'] = 42
 matplotlib.rcParams['ps.fonttype'] = 42
 matplotlib.rcParams.update({
-    'font.size': 12,
-    'axes.titlesize': 13,
-    'axes.labelsize': 12,
-    'xtick.labelsize': 11,
-    'ytick.labelsize': 11,
-    'legend.fontsize': 11,
+    'font.size': 16,
+    'axes.titlesize': 18,
+    'axes.labelsize': 16,
+    'xtick.labelsize': 14,
+    'ytick.labelsize': 14,
+    'legend.fontsize': 14,
 })
 
 def generate_confusion_matrix():
@@ -41,7 +41,7 @@ def generate_confusion_matrix():
     plt.ylabel('True Physical State')
     plt.xlabel('Predicted State')
     plt.tight_layout()
-    plt.savefig('figures/fig_confusion_matrix.pdf', format='pdf', bbox_inches='tight', dpi=600)
+    plt.savefig('figures/fig_confusion_matrix.pdf', format='pdf', bbox_inches='tight', dpi=1200)
     plt.close()
 
 def generate_tsne_plot():
@@ -67,7 +67,7 @@ def generate_tsne_plot():
     plt.ylabel('t-SNE Dimension 2')
     plt.legend(loc='lower right')
     plt.tight_layout()
-    plt.savefig('figures/fig_tsne.pdf', format='pdf', bbox_inches='tight', dpi=600)
+    plt.savefig('figures/fig_tsne.pdf', format='pdf', bbox_inches='tight', dpi=1200)
     plt.close()
 
 def generate_roc_curves():
@@ -91,20 +91,20 @@ def generate_roc_curves():
     plt.ylabel('True Positive Rate')
     plt.legend(loc="lower right")
     plt.tight_layout()
-    plt.savefig('figures/fig_roc.pdf', format='pdf', bbox_inches='tight', dpi=600)
+    plt.savefig('figures/fig_roc.pdf', format='pdf', bbox_inches='tight', dpi=1200)
     plt.close()
 
 def generate_shap_plot():
     # Synthetic SHAP feature importance values
-    features = ['Phase Decoherence (Δφ)', 'Sideband Power ($P_{sb}$)', 'Photon Variance ($\sigma^2_\mu$)', 'Mean Photon ($\mu$)', 'QBER']
+    features = ['Phase Decoherence (Δφ)', 'Sideband Power ($P_{sb}$)', r'Photon Variance ($\sigma^2_\mu$)', r'Mean Photon ($\mu$)', 'QBER']
     importance = [0.45, 0.30, 0.15, 0.08, 0.02]
     
-    plt.figure(figsize=(7, 4))
-    sns.barplot(x=importance, y=features, palette='viridis')
+    plt.figure(figsize=(8, 6))
+    sns.barplot(x=importance, y=features, hue=features, palette='viridis', legend=False)
     plt.title('SHAP Feature Importance (XGBoost)', pad=15)
-    plt.xlabel('Mean |SHAP value| (Average impact on model output magnitude)')
+    plt.xlabel('Mean |SHAP value|\n(Average impact on model output magnitude)')
     plt.tight_layout()
-    plt.savefig('figures/fig_shap.pdf', format='pdf', bbox_inches='tight', dpi=600)
+    plt.savefig('figures/fig_shap.pdf', format='pdf', bbox_inches='tight', dpi=1200)
     plt.close()
 
 def generate_skr_plot():
@@ -136,7 +136,7 @@ def generate_skr_plot():
     plt.grid(True, which="both", ls="--", alpha=0.5)
     plt.legend()
     plt.tight_layout()
-    plt.savefig('figures/fig_skr.pdf', format='pdf', bbox_inches='tight', dpi=600)
+    plt.savefig('figures/fig_skr.pdf', format='pdf', bbox_inches='tight', dpi=1200)
     plt.close()
 
 if __name__ == '__main__':

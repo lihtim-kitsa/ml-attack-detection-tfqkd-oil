@@ -8,12 +8,12 @@ import matplotlib
 matplotlib.rcParams['pdf.fonttype'] = 42
 matplotlib.rcParams['ps.fonttype'] = 42
 matplotlib.rcParams.update({
-    'font.size': 14,
-    'axes.titlesize': 16,
-    'axes.labelsize': 14,
-    'xtick.labelsize': 13,
-    'ytick.labelsize': 13,
-    'legend.fontsize': 13,
+    'font.size': 18,
+    'axes.titlesize': 22,
+    'axes.labelsize': 18,
+    'xtick.labelsize': 16,
+    'ytick.labelsize': 16,
+    'legend.fontsize': 16,
 })
 
 def evaluate_models():
@@ -93,7 +93,7 @@ def plot_results(df_results):
     plt.grid(axis='y', linestyle='--', alpha=0.7)
     
     fig.tight_layout()
-    plt.savefig('figures/drift_vulnerability_plot.pdf', format='pdf', bbox_inches='tight', dpi=600)
+    plt.savefig('figures/drift_vulnerability_plot.pdf', format='pdf', bbox_inches='tight', dpi=1200)
     print("Saved plot to figures/drift_vulnerability_plot.pdf")
 
 if __name__ == "__main__":
